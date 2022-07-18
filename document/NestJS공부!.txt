@@ -76,3 +76,6 @@ getOne(@Param("id") movieId: string) {    → 여기서 @Param으로 요청해�
     return `This will return one movie with the id: ${movieId}`;
 }
 
+
+주의사항
+URL로 보낸 값은 일단 string이다~!
