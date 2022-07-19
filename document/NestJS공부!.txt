@@ -79,3 +79,19 @@ getOne(@Param("id") movieId: string) {    → 여기서 @Param으로 요청해�
 
 주의사항
 URL로 보낸 값은 일단 string이다~!
+
+7/19
+- UpdateMovieDTO 추가
+ : npm i @nestjs/mapped-types 하여 패키지 설치 - 타입을 변환시키고 사용할 수 있게 해주는 패키지.
+ : NestJS 만든 사람들이 제공해줌!
+ : https://www.npmjs.com/package/@nestjs/mapped-types
+ : PartialType() 사용하기 위해서!
+ : 우리의 DTO를 변환 시키는 것을 도와준다!
+ : UpdateMovieDTO를 CreateMovieDTO의 값을 그대로 복붙해서, ? 넣어서 없어도 된다고 사용 하는 것 보다는
+ PartialType을 활용해서 중복 제거하고, 변환해서 쓰게끔해주면 된다.
+
+- CreateMovieDTO
+ : genres는 입력 안할 수도 있으니, @IsOptional 데코레이션 활용.
+
+- class-validator 구글링
+ : https://github.com/typestack/class-validator
