@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { MoviesService } from './movies.service';
@@ -20,25 +18,25 @@ describe('MoviesService', () => {
   });
 
   describe('getAll', () => {
-    it("should return an array", () => {
+    it('should return an array', () => {
       const result = service.getAll();
       expect(result).toBeInstanceOf(Array);
-    })
+    });
   });
 
   describe('getOne', () => {
-    it("should return a movie", () => {
+    it('should return a movie', () => {
       service.create({
         title: 'Test Movie',
         genres: ['test', 'apple', 'samsung'],
-        year: 2025
+        year: 2025,
       });
       const movie = service.getOne(1);
       expect(movie).toBeDefined();
       expect(movie.id).toEqual(1);
     });
 
-    it("should throw 404 error", () => {
+    it('should throw 404 error', () => {
       try {
         service.getOne(999);
       } catch (error) {
@@ -49,60 +47,57 @@ describe('MoviesService', () => {
   });
 
   describe('deleteOne', () => {
-    it("deletes a movie", () => {
+    it('deletes a movie', () => {
       service.create({
         title: 'Test Movie',
         genres: ['test', 'apple', 'samsung'],
-        year: 2025
+        year: 2025,
       });
       const beforeDelete = service.getAll().length;
       service.deleteOne(1);
       const afterDelete = service.getAll().length;
       expect(afterDelete).toBeLessThan(beforeDelete);
     });
-    it("should return a 404", () => {
+    it('should return a 404', () => {
       try {
         service.deleteOne(999);
       } catch (error) {
-        expect(error).toBeInstanceOf(NotFoundException)
+        expect(error).toBeInstanceOf(NotFoundException);
       }
     });
   });
 
-  describe("create", () => {
-    it("should create a movie", () => {
+  describe('create', () => {
+    it('should create a movie', () => {
       const beforeCreate = service.getAll().length;
       service.create({
         title: 'Test Movie',
         genres: ['test', 'apple', 'samsung'],
-        year: 2025
+        year: 2025,
       });
       const afterCreate = service.getAll().length;
       expect(afterCreate).toBeGreaterThan(beforeCreate);
-      console.log(beforeCreate, afterCreate)
-    })
-  })
+      console.log(beforeCreate, afterCreate);
+    });
+  });
 
-  describe("update", () => {
-    it("should update a movie", () => {
+  describe('update', () => {
+    it('should update a movie', () => {
       service.create({
         title: 'Test Movie',
         genres: ['test', 'apple', 'samsung'],
-        year: 2025
+        year: 2025,
       });
-      service.update(1, { title: "Updated Test" });
+      service.update(1, { title: 'Updated Test' });
       const movie = service.getOne(1);
-      expect(movie.title).toEqual("Updated Test");
+      expect(movie.title).toEqual('Updated Test');
     });
-    it("should throw a NotFoundException", () => {
+    it('should throw a NotFoundException', () => {
       try {
-        service.update(999, { title: "FailUpdated Test" })
+        service.update(999, { title: 'FailUpdated Test' });
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);
       }
-    })
-  })
-
-
-
+    });
+  });
 });
